@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <title>𝓜𝓐𝓝𝓐𝓖𝓔𝓜𝓔𝓝𝓣 𝓑𝓞𝓞𝓚𝓢𝓣𝓞𝓡𝓔</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f77979; /*  main backgrount */
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(201, 64, 64, 0.9);
+            box-shadow: 0 0 10px rgb(243, 196, 196);
+            border-radius: 8px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        h1, h2 {
+            color: white; /* color of title letters */
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: center; /* center for all elements */
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: white;
+            text-align: center; /* center for labels */
+        }
+        input, select, button {
+            width: 80%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            text-align: center; /* center for inputs */
+        }
+        button {
+            cursor: pointer;
+            background-color: #f3bfc4;
+            color: rgb(2, 1, 1);
+            border: none;
+            border-radius: 4px;
+        }
+        .message {
+            margin-top: 20px;
+            font-weight: bold;
+            color: white;
+        }
+        .results {
+            margin-top: 20px;
+            color: white;
+        }
+
+        /* switch settings */
+        .ui-switch {
+            --switch-bg: rgb(243, 84, 203);
+            --switch-width: 48px;
+            --switch-height: 20px;
+            --circle-diameter: 32px;
+            --circle-bg: #f1d7e9;
+            --circle-inset: calc((var(--circle-diameter) - var(--switch-height)) / 2);
+        }
+
+        .ui-switch input {
+            display: none;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: var(--switch-width);
+            height: var(--switch-height);
+            background: var(--switch-bg);
+            border-radius: 999px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .slider .circle {
+            top: calc(var(--circle-inset) * -1);
+            left: 0;
+            width: var(--circle-diameter);
+            height: var(--circle-diameter);
+            position: absolute;
+            background: var(--circle-bg);
+            border-radius: inherit;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjAiIHdpZHRoPSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiNmZmYiCiAgICAgICAgZD0iTTQuMiAyLjVsLS43IDEuOC0xLjguNyAxLjguNy43IDEuOC42LTEuOEw2LjcgNWwtMS45LS43LS42LTEuOHptMTUgOC4zYTYuNyA2LjcgMCAxMS02LjYtNi42IDUuOCA1LjggMCAwMDYuNiA2LjZ6IiAvPgo8L3N2Zz4=");
+            background-repeat: no-repeat;
+            background-position: center center;
+            -webkit-transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            -o-transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+        }
+
+        .slider .circle::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: inherit;
+            -webkit-transition: all 500ms;
+            -o-transition: all 500ms;
+            transition: all 500ms;
+            opacity: 0;
+        }
+
+        /* actions */
+
+        .ui-switch input:checked + .slider .circle {
+            left: calc(100% - var(--circle-diameter));
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjAiIHdpZHRoPSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiNmZmYiCiAgICAgICAgZD0iTTQuMiAyLjVsLS43IDEuOC0xLjguNyAxLjguNy43IDEuOC42LTEuOEw2LjcgNWwtMS45LS43LS42LTEuOHptMTUgOC4zYTYuNyA2LjcgMCAxMS02LjYtNi42IDUuOCA1LjggMCAwMDYuNiA2LjZ6IiAvPgo8L3N2Zz4=");
+        }
+
+        .ui-switch input:active + .slider .circle::before {
+            -webkit-transition: 0s;
+            -o-transition: 0s;
+            transition: 0s;
+            opacity: 1;
+            width: 0;
+            height: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>𝓜𝓐𝓝𝓐𝓖𝓔𝓜𝓔𝓝𝓣 𝓑𝓞𝓞𝓚𝓢𝓣𝓞𝓡𝓔</h1>
+        
+        <h2>𝓐𝓓𝓓 𝓝𝓔𝓦 𝓑𝓞𝓞𝓚</h2>
+        <div id="book-form" class="form-group">
+            <form id="book-form">
+            <label for="author">𝓐𝓤𝓣𝓗𝓞𝓡:</label>
+            <input type="text" id="author" required>
+            
+            <label for="title">𝓣𝓘𝓣𝓛𝓔:</label>
+            <input type="text" id="title" required>
+            
+            <label for="genre">𝓖𝓔𝓝𝓡𝓔:</label>
+            <select id="genre">
+                <option value="Science fiction">𝓢𝓒𝓘𝓔𝓝𝓒𝓔 𝓕𝓘𝓒𝓣𝓘𝓞𝓝</option>
+                <option value="Satire">𝓢𝓐𝓣𝓘𝓡𝓔</option>
+                <option value="Drama">𝓓𝓡𝓐𝓜𝓐</option>
+                <option value="Action and Adventure">𝓐𝓒𝓣𝓘𝓞𝓝 𝓐𝓝𝓓 𝓐𝓓𝓥𝓔𝓝𝓣𝓤𝓡𝓔</option>
+                <option value="Romance">𝓡𝓞𝓜𝓐𝓝𝓒𝓔</option>
+                <option value="Mystery">𝓜𝓨𝓢𝓣𝓔𝓡𝓨</option>
+                <option value="Horror">𝓗𝓞𝓡𝓡𝓞𝓡</option>
+            </select>
+            
+            <label for="price">𝓟𝓡𝓘𝓒𝓔:</label>
+            <input type="text" id="price" required>
+            
+            <button onclick="submitBook()" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition duration-300">
+                <i class="fas fa-plus"></i> 𝓐𝓓𝓓 𝓑𝓞𝓞𝓚
+            </button>
+        </form>
+            
+        </div>
+        <div id="book-message" class="message"></div>
+
+        <h2>𝓢𝓔𝓐𝓡𝓒𝓗 𝓑𝓞𝓞𝓚 𝓦𝓘𝓣𝓗 𝓚𝓔𝓨𝓦𝓞𝓡𝓓</h2>
+        <div id="search-form" class="form-group">
+            <label for="keyword">𝓚𝓔𝓨𝓦𝓞𝓡𝓓</label>
+            <input type="text" id="keyword">
+
+            <button onclick="searchBooks()" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition duration-300">
+                𝓢𝓔𝓐𝓡𝓒𝓗
+            </button>
+            
+        </div>
+        <div id="search-results" class="results"></div>
+    </div>
+
+    <script>
+        async function submitBook() {
+    const author = document.getElementById('author').value;
+    const title = document.getElementById('title').value;
+    const genre = document.getElementById('genre').value;
+    const price = document.getElementById('price').value;
+
+    if (isNaN(price)) {
+        document.getElementById('book-message').textContent = '𝓟𝓡𝓘𝓒𝓔 𝓜𝓤𝓢𝓣 𝓑𝓔 𝓝𝓤𝓜𝓑𝓔𝓡!';
+        return;
+    }
+
+    const book = {
+        author,
+        title,
+        genre,
+        price: parseFloat(price)
+    };
+
+    console.log('Submitting book:', book);
+
+    try {
+        const response = await fetch('http://localhost:3000/books', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(book)
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        console.log('Response data:', data);
+
+        document.getElementById('book-message').textContent = '𝓣𝓗𝓔 𝓑𝓞𝓞𝓚 𝓐𝓓𝓓𝓔𝓓 𝓢𝓤𝓒𝓒𝓔𝓢𝓢𝓕𝓤𝓛𝓛𝓨:)';
+        document.getElementById('book-form').reset();
+    } catch (error) {
+        console.error('Fetch error:', error);
+        document.getElementById('book-message').textContent = '𝓡𝓔𝓖𝓘𝓢𝓣𝓡𝓐𝓣𝓘𝓞𝓝 𝓔𝓡𝓡𝓞𝓡:(';
+    }
+}
+
+        function searchBooks() {
+            const keyword = document.getElementById('keyword').value;
+
+            fetch(`http://localhost:3000/books/${keyword}`)
+            .then(response => response.json())
+            .then(data => {
+                const results = document.getElementById('search-results');
+                results.innerHTML = '';
+
+                if (data.length === 0) {
+                    results.textContent = '𝓝𝓞 𝓑𝓞𝓞𝓚𝓢 𝓕𝓞𝓤𝓝𝓓:(';
+                    return;
+                }
+
+                data.forEach(book => {
+                    const bookItem = document.createElement('div');
+                    bookItem.textContent = `${book.title} by ${book.author} - ${book.genre} - $${book.price}`;
+                    results.appendChild(bookItem);
+                });
+            })
+            .catch(error => {
+                document.getElementById('search-results').textContent = '𝓔𝓡𝓡𝓞𝓡 𝓦𝓘𝓣𝓗 𝓑𝓞𝓞𝓚 𝓢𝓔𝓐𝓡𝓒𝓗!';
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
